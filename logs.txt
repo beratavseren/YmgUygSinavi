@@ -1,1 +1,104 @@
+Started by GitHub push by beratavseren
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins
+ in C:\ProgramData\Jenkins\.jenkins\workspace\pipin
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Repo Klonla)
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+ > git.exe rev-parse --resolve-git-dir C:\ProgramData\Jenkins\.jenkins\workspace\pipin\.git # timeout=10
+Fetching changes from the remote Git repository
+ > git.exe config remote.origin.url https://github.com/beratavseren/YmgUygSinavi.git # timeout=10
+Fetching upstream changes from https://github.com/beratavseren/YmgUygSinavi.git
+ > git.exe --version # timeout=10
+ > git --version # 'git version 2.47.1.windows.1'
+ > git.exe fetch --tags --force --progress -- https://github.com/beratavseren/YmgUygSinavi.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git.exe rev-parse "refs/remotes/origin/main^{commit}" # timeout=10
+Checking out Revision c5b5942fa56d1267a86ff439d74e9e9db8e84049 (refs/remotes/origin/main)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f c5b5942fa56d1267a86ff439d74e9e9db8e84049 # timeout=10
+ > git.exe branch -a -v --no-abbrev # timeout=10
+ > git.exe branch -D main # timeout=10
+ > git.exe checkout -b main c5b5942fa56d1267a86ff439d74e9e9db8e84049 # timeout=10
+Commit message: "Create Jenkinsfile"
+ > git.exe rev-list --no-walk 74cb1f0681d6eed25e009433a5afdf0991900ee7 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Image Olustur)
+[Pipeline] echo
+docker imaj oluştur
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\pipin>docker build -t deneme-v3 . 
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 135B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/nginx:alpine
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/3] FROM docker.io/library/nginx:alpine
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 36B done
+#5 DONE 0.0s
+
+#6 [2/3] WORKDIR /app
+#6 CACHED
+
+#7 [3/3] COPY index.html.txt /usr/share/nginx/html/index.html
+#7 CACHED
+
+#8 exporting to image
+#8 exporting layers done
+#8 writing image sha256:ad55a0e5ddcd3605826b79930d91ab212fc10574b729c35895cb17b3c3419d40 done
+#8 naming to docker.io/library/deneme-v3 done
+#8 DONE 0.0s
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Conteyner durdur)
+[Pipeline] echo
+conteyner durdur
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\pipin>docker rm -f test-ngnix3   || true
+test-ngnix3
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Konteynır oluştur)
+[Pipeline] echo
+yeni conteyner oluştur
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\pipin>docker run -d --name test-ngnix3 -p 4444:80 deneme-v3 
+7e9b9f25d7013a7b7772f9f4b691058a3f0f9cbf6ae494274413010863a2260b
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+başarılı
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
 
